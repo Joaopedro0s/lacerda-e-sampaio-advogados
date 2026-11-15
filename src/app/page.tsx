@@ -1,13 +1,14 @@
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, Clock, MessageCircle, Phone, Star } from "lucide-react";
 import { AreaCard } from "@/components/AreaCard";
 import { Faq } from "@/components/Faq";
 import { JsonLd } from "@/components/JsonLd";
 import { ProcessSteps } from "@/components/ProcessSteps";
 import { Reveal } from "@/components/Reveal";
 import { CtaPanel, Heading, IconCircle, Section } from "@/components/Section";
-import { site } from "@/content/site";
+import { TeamCard } from "@/components/TeamCard";
+import { site, telUrl, whatsappUrl } from "@/content/site";
 import { faqLd, pageMeta } from "@/lib/seo";
 
 export const metadata = pageMeta({ title: site.home.metaTitle, description: site.description, path: "/" });
@@ -19,6 +20,16 @@ function Avatar({ initials }: { initials: string }) {
     <span aria-hidden="true" className="flex size-11 shrink-0 items-center justify-center rounded-full bg-brass-soft font-serif text-sm font-semibold text-brass-ink">
       {initials}
     </span>
+  );
+}
+
+function Stars({ rating }: { rating: number }) {
+  return (
+    <div role="img" aria-label={`${rating} de 5 estrelas`} className="flex gap-0.5 text-brass-ink">
+      {Array.from({ length: rating }, (_, i) => (
+        <Star key={i} className="size-4 fill-current" aria-hidden="true" />
+      ))}
+    </div>
   );
 }
 
@@ -61,9 +72,9 @@ export default function HomePage() {
               sizes="(min-width: 1024px) 40vw, 90vw"
               className={`relative aspect-[4/3] w-full object-cover sm:aspect-[4/5] ${corners}`}
             />
-            <div className="absolute -left-2 bottom-6 flex max-w-[17.5rem] items-center gap-3 rounded-sm border border-line bg-surface p-4 shadow-xl shadow-ink/15 lg:-left-12 lg:bottom-12">
-              <IconCircle icon={hero.card.icon} />
-              <p className="text-sm leading-snug">
+            <div className="absolute -left-2 bottom-4 flex max-w-[13.5rem] items-center gap-2.5 rounded-sm border border-line bg-surface p-2.5 shadow-xl shadow-ink/15 sm:bottom-6 sm:max-w-[17.5rem] sm:gap-3 sm:p-4 lg:-left-12 lg:bottom-12">
+              <IconCircle icon={hero.card.icon} className="max-sm:!size-9" />
+              <p className="text-xs leading-snug sm:text-sm">
                 <strong className="block font-semibold">{hero.card.title}</strong>
                 <span className="text-muted">{hero.card.text}</span>
               </p>
@@ -124,6 +135,31 @@ export default function HomePage() {
         </ul>
       </Section>
 
+      {/* Equipe: 2 sócios + 1 associado. No mobile vira carrossel com scroll-snap, rolável por teclado. */}
+      <Section tone="surface">
+        <Reveal className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
+          <Heading eyebrow={site.about.team.eyebrow} title={site.about.team.title} />
+          <Link href="/sobre" className="link inline-flex min-h-11 items-center gap-2">
+            {site.home.team.link}
+            <ArrowRight className="size-4" aria-hidden="true" />
+          </Link>
+        </Reveal>
+        <div
+          role="region"
+          aria-label={site.about.team.title}
+          tabIndex={0}
+          className="-mx-5 mt-12 snap-x snap-mandatory scroll-px-5 overflow-x-auto px-5 pb-3 md:mx-0 md:overflow-visible md:px-0 md:pb-0"
+        >
+          <ul className="flex gap-5 md:grid md:grid-cols-3 md:gap-8">
+            {site.team.slice(0, 3).map((member) => (
+              <li key={member.name} className="w-[78%] shrink-0 snap-start md:w-auto">
+                <TeamCard member={member} />
+              </li>
+            ))}
+          </ul>
+        </div>
+      </Section>
+
       {/* Diferenciais (fundo escuro) */}
       <Section tone="dark">
         <div className="grid gap-14 lg:grid-cols-[1fr_1.6fr] lg:gap-20">
@@ -155,7 +191,8 @@ export default function HomePage() {
               <span aria-hidden="true" className="font-serif text-[7rem] leading-[0.6] text-brass">
                 “
               </span>
-              <blockquote className="mt-2 font-serif text-2xl leading-snug md:text-[2rem]">{featured.quote}</blockquote>
+              <Stars rating={featured.rating} />
+              <blockquote className="mt-4 font-serif text-2xl leading-snug md:text-[2rem]">{featured.quote}</blockquote>
               <figcaption className="mt-10 flex items-center gap-3">
                 <Avatar initials={featured.initials} />
                 <span className="text-sm leading-snug">
@@ -168,8 +205,9 @@ export default function HomePage() {
           <div className="grid gap-5">
             {others.map((t, i) => (
               <Reveal key={t.name} delay={(i + 1) * 100} className="h-full">
-                <figure className="flex h-full flex-col justify-between rounded-sm border border-line p-7">
-                  <blockquote className="text-lg">{t.quote}</blockquote>
+                <figure className="flex h-full flex-col rounded-sm border border-line bg-surface p-7">
+                  <Stars rating={t.rating} />
+                  <blockquote className="mt-4 flex-1 text-lg">{t.quote}</blockquote>
                   <figcaption className="mt-6 flex items-center gap-3">
                     <Avatar initials={t.initials} />
                     <span className="text-sm leading-snug">
@@ -194,13 +232,40 @@ export default function HomePage() {
           sizes="100vw"
           className="absolute inset-0 -z-20 size-full object-cover object-bottom"
         />
-        <div aria-hidden="true" className="absolute inset-0 -z-10 bg-gradient-to-r from-ink via-ink/90 to-ink/60" />
-        <Reveal className="wrap py-24 md:py-32">
-          <h2 className="max-w-2xl text-4xl font-medium md:text-5xl">{band.title}</h2>
-          <p className="mt-5 max-w-xl text-lg text-white/85">{band.text}</p>
-          <Link href="/contato" className="btn btn-brass mt-9">
-            {site.cta.primary}
-          </Link>
+        {/* mobile: overlay uniforme (texto ocupa a largura toda); desktop: escuro só à esquerda */}
+        <div
+          aria-hidden="true"
+          className="absolute inset-0 -z-10 bg-ink/85 lg:bg-transparent lg:bg-gradient-to-r lg:from-ink lg:from-40% lg:via-ink/85 lg:via-60% lg:to-ink/15"
+        />
+        <Reveal className="wrap grid gap-12 py-24 md:py-28 lg:grid-cols-[1.5fr_1fr] lg:items-center">
+          <div>
+            <h2 className="max-w-2xl text-4xl font-medium md:text-5xl">{band.title}</h2>
+            <p className="mt-5 max-w-xl text-lg text-white/90">{band.text}</p>
+            <Link href="/contato" className="btn btn-brass mt-9">
+              {site.cta.primary}
+            </Link>
+          </div>
+          <div className="hidden rounded-sm bg-surface p-7 text-ink shadow-2xl shadow-ink/40 lg:block">
+            <h3 className="text-2xl font-medium">{band.cardTitle}</h3>
+            <ul className="mt-4 divide-y divide-line">
+              <li>
+                <a href={telUrl} className="flex min-h-12 items-center gap-3 font-semibold underline-offset-4 hover:underline">
+                  <Phone className="size-5 text-brass-ink" aria-hidden="true" />
+                  {site.contact.phoneDisplay}
+                </a>
+              </li>
+              <li>
+                <a href={whatsappUrl} target="_blank" rel="noopener noreferrer" className="flex min-h-12 items-center gap-3 font-semibold underline-offset-4 hover:underline">
+                  <MessageCircle className="size-5 text-brass-ink" aria-hidden="true" />
+                  WhatsApp {site.contact.whatsappDisplay}
+                </a>
+              </li>
+              <li className="flex min-h-12 items-center gap-3 text-muted">
+                <Clock className="size-5 shrink-0 text-brass-ink" aria-hidden="true" />
+                {site.hours[0].days}, {site.hours[0].time}
+              </li>
+            </ul>
+          </div>
         </Reveal>
       </section>
 

@@ -79,7 +79,7 @@ export function Footer() {
       </div>
 
       <div className="border-t border-white/15">
-        <div className="wrap space-y-3 py-6 text-sm">
+        <div className="wrap space-y-3 py-6 text-[0.9rem]">
           <p>
             <strong className="font-semibold text-brass">{site.demoNotice}.</strong> {site.legalLine}
           </p>
@@ -94,7 +94,7 @@ export function Footer() {
                 , {c.author} ({c.license})
               </span>
             ))}
-            , via Wikimedia Commons.
+            .
           </p>
         </div>
       </div>

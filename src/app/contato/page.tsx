@@ -90,10 +90,10 @@ export default function ContatoPage() {
           <h2 id="mapa-titulo" className="text-3xl font-medium">
             {page.mapTitle}
           </h2>
-          {/* Incorporação simples do Google Maps, sem chave de API. O termo vem de site.contact.mapQuery. */}
+          {/* Google Maps sem chave de API. mapQuery é uma rua real só para posicionar o pin; o endereço exibido no site é fictício. */}
           <iframe
             title={`Mapa: localização do ${site.name}`}
-            src={`https://www.google.com/maps?q=${encodeURIComponent(contact.mapQuery)}&output=embed`}
+            src={`https://www.google.com/maps?q=${encodeURIComponent(contact.mapQuery)}&z=15&output=embed`}
             loading="lazy"
             referrerPolicy="no-referrer-when-downgrade"
             className="mt-8 h-[26rem] w-full rounded-sm border border-line"

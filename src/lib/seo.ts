@@ -35,9 +35,10 @@ export const organizationLd = () => ({
     "@type": "PostalAddress",
     streetAddress: site.contact.addressLines[0],
     addressLocality: site.city,
+    addressRegion: site.state,
     addressCountry: "BR",
   },
-  areaServed: site.city,
+  areaServed: { "@type": "City", name: site.city },
   openingHours: "Mo-Fr 09:00-18:00",
   knowsAbout: site.areas.map((a) => a.title),
 });

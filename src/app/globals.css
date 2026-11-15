@@ -11,7 +11,8 @@
   --brass-ink: #7a5f33; /* destaque para texto sobre fundo claro (AA) */
   --brass-soft: #efe4d0;
   --muted: #465366;
-  --on-dark: #c3cad6;
+  --on-dark: #d5dae3;
+  --field: #6b7686; /* borda de campos: ≥ 3:1 sobre branco e sobre o fundo */
   --line: #ddd5c6;
 }
 
@@ -91,7 +92,7 @@
     @apply bg-brass/15 text-brass;
   }
   .field {
-    @apply block min-h-12 w-full rounded-sm border border-ink/30 bg-white px-4 py-3 text-ink transition-colors duration-150 placeholder:text-muted/70 focus:border-ink aria-invalid:border-red-700;
+    @apply block min-h-12 w-full rounded-sm border border-field bg-white px-4 py-3 text-ink transition duration-150 placeholder:text-muted focus:border-brass-ink focus:outline-none focus:ring-2 focus:ring-brass-ink aria-invalid:border-red-700;
   }
 }
 

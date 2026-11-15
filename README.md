@@ -3,7 +3,7 @@
 > **Demonstração: escritório, profissionais, registros, contatos e depoimentos são fictícios.**
 > Todos os dados deste projeto são placeholders e **devem ser substituídos antes de qualquer uso real**.
 
-Site institucional em Next.js para um escritório fictício de advocacia em `[Cidade]`. Exemplo de portfólio.
+Site institucional em Next.js para um escritório fictício de advocacia em São Paulo/SP (Lacerda & Sampaio Advogados). Exemplo de portfólio.
 
 ## Como rodar
 
@@ -116,11 +116,11 @@ Cada teste traz um comentário de uma linha dizendo o que cobre.
 
 ## Imagens
 
-As fotos de ambiente vêm do Wikimedia Commons (licenças livres), com crédito no rodapé. Unsplash e Pexels bloquearam o download automatizado durante a criação do projeto. Os retratos da equipe são placeholders: veja `docs/imagens-pendentes.md`.
+As fotos vêm do Unsplash (hero e retratos da equipe) e do Wikimedia Commons (biblioteca e estantes), todas com licença de uso livre e crédito no rodapé. Os retratos são de banco de imagens: veja `docs/imagens-pendentes.md` para substituí-los.
 
 ## Pendências conhecidas
 
-- Retratos da equipe (placeholders).
+- Retratos da equipe são fotos de banco, com nomes fictícios.
 - Sem limite de requisições no `/api/contato`: há honeypot e validação, mas adicione rate limit antes de uso real.
 - Para um escritório real, veja `docs/conteudos-necessarios.md`.
 # lacerda-e-sampaio-advogados

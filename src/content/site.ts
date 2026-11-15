@@ -28,9 +28,12 @@ export const segment = {
   schemaType: "LegalService",
 } as const;
 
-const city = "[Cidade]";
-const name = "[Nome do Escritório]";
-const registryNumber = `[${segment.registry}/UF 000.000 fictício]`;
+const name = "Lacerda & Sampaio Advogados";
+const shortName = "Lacerda & Sampaio"; // wordmark do cabeçalho e do rodapé
+const city = "São Paulo";
+const state = "SP";
+const cityState = `${city}/${state}`;
+const registryNumber = `${segment.registry}/${state} 000.000 (fictício)`;
 
 export type Faq = { question: string; answer: string };
 
@@ -365,9 +368,12 @@ const posts: Post[] = [
 
 export const site = {
   name,
+  shortName,
   city,
+  state,
+  cityState,
   tagline: `${segment.label} em ${city}`,
-  description: `Escritório de ${segment.label.toLowerCase()} em ${city}. Atendimento a pessoas e empresas em Direito de Família, Trabalhista, Empresarial e do Consumidor.`,
+  description: `${name}: escritório de ${segment.label.toLowerCase()} em ${cityState}. Atendimento a pessoas e empresas em Direito de Família, Trabalhista, Empresarial e do Consumidor.`,
   demoNotice:
     "Demonstração: escritório, profissionais, registros, contatos e depoimentos são fictícios",
   registryNumber,
@@ -379,9 +385,10 @@ export const site = {
     whatsappNumber: "5500900000000",
     whatsappMessage: "Olá! Gostaria de agendar uma consulta.",
     email: "contato@escritorio.example",
-    addressLines: ["[Rua Fictícia, 000, sala 00]", `[Bairro] · ${city}/[UF]`, "[CEP 00000-000]"],
-    // Termo usado no mapa incorporado. Troque pelo endereço real.
-    mapQuery: "Brasil",
+    addressLines: ["[Rua Fictícia, 000, sala 00]", `[Bairro] · ${cityState}`, "[CEP 00000-000]"],
+    // Só posiciona o mapa incorporado: é uma rua real e genérica do centro de São Paulo.
+    // O endereço exibido no site (addressLines) é fictício. Troque os dois pelo endereço real.
+    mapQuery: "Rua Líbero Badaró, Centro, São Paulo - SP",
   },
 
   hours: [
@@ -413,10 +420,10 @@ export const site = {
   },
 
   trustNumbers: [
-    { value: "00+", label: "anos de atuação" },
-    { value: "000+", label: "clientes atendidos" },
+    { value: "12", label: "anos de atuação" },
+    { value: "800+", label: "clientes atendidos" },
     { value: String(areas.length), label: "áreas de atuação" },
-    { value: `${segment.registry}/UF`, label: "registro nº 000.000 (fictício)" },
+    { value: `${segment.registry}/${state}`, label: "registro nº 000.000 (fictício)" },
   ],
 
   home: {
@@ -428,10 +435,10 @@ export const site = {
         "Atendemos pessoas e empresas em Direito de Família, Trabalhista, Empresarial e do Consumidor. Você entende cada etapa antes de decidir.",
       card: { icon: CalendarCheck, title: "Atendimento presencial e online", text: "Segunda a sexta, das 9h às 18h" },
       image: {
-        src: "/images/contrato.webp",
-        width: 1920,
-        height: 1440,
-        alt: "Contrato impresso sobre a mesa com uma caneta-tinteiro ao lado da linha de assinatura",
+        src: "/images/escritorio.webp",
+        width: 1400,
+        height: 1750,
+        alt: "Escritório claro com divisórias de vidro, forro de madeira e plantas",
       },
     },
     intro: {
@@ -449,6 +456,7 @@ export const site = {
       lead: "Quatro áreas, com profissionais dedicados a cada uma delas.",
       link: "Ver todas as áreas",
     },
+    team: { link: "Conheça a equipe" },
     differentials: {
       eyebrow: "Como trabalhamos",
       title: "O que você pode esperar do nosso atendimento",
@@ -457,6 +465,7 @@ export const site = {
     band: {
       title: "Uma dúvida jurídica não precisa virar um problema maior",
       text: "Quanto antes você entende seus direitos, mais opções tem para decidir.",
+      cardTitle: "Contato rápido",
       image: {
         src: "/images/biblioteca.webp",
         width: 1920,
@@ -498,18 +507,21 @@ export const site = {
       name: "Cliente fictício A",
       context: "Direito de Família",
       initials: "CA",
+      rating: 5,
     },
     {
       quote: "O que mais valorizei foi receber as informações por escrito e sem termos complicados.",
       name: "Cliente fictício B",
       context: "Direito do Consumidor",
       initials: "CB",
+      rating: 5,
     },
     {
       quote: "A equipe revisou nossos contratos e explicou cada ajuste. Ficou mais fácil decidir.",
       name: "Cliente fictício C",
       context: "Direito Empresarial",
       initials: "CC",
+      rating: 5,
     },
   ],
 
@@ -520,7 +532,7 @@ export const site = {
       eyebrow: "Nossa história",
       title: "Um escritório criado para explicar o Direito",
       paragraphs: [
-        `O ${name} foi fundado em ${city} em [ano fictício] por profissionais que compartilhavam a mesma inquietação: muita gente deixa de buscar seus direitos por não entender a linguagem jurídica.`,
+        `O ${name} foi fundado em ${city} em 2014 por profissionais que compartilhavam a mesma inquietação: muita gente deixa de buscar seus direitos por não entender a linguagem jurídica.`,
         "Desde então, o escritório cresceu de forma gradual, mantendo um atendimento próximo. Cada cliente sabe quem cuida do seu caso e como falar com essa pessoa.",
         "Hoje a equipe se divide entre quatro áreas de atuação e atende pessoas e empresas, presencialmente e a distância.",
       ],
@@ -554,32 +566,40 @@ export const site = {
 
   team: [
     {
-      name: "[Nome da Sócia]",
-      role: "Sócia-fundadora · Direito de Família",
+      name: "Dr. Henrique Lacerda",
+      role: "Sócio-fundador",
+      specialty: "Direito Empresarial",
       education: "[Graduação e pós-graduação: instituição fictícia]",
       registry: registryNumber,
-      photo: null as string | null, // ex.: "/images/equipe-1.webp" (ver docs/imagens-pendentes.md)
+      photo: "/images/equipe-lacerda.webp",
+      alt: "Retrato de Dr. Henrique Lacerda, de óculos e blazer escuro",
     },
     {
-      name: "[Nome do Sócio]",
-      role: "Sócio · Direito Empresarial",
+      name: "Dra. Marina Sampaio",
+      role: "Sócia-fundadora",
+      specialty: "Direito de Família",
       education: "[Graduação e pós-graduação: instituição fictícia]",
       registry: registryNumber,
-      photo: null as string | null,
+      photo: "/images/equipe-sampaio.webp",
+      alt: "Retrato de Dra. Marina Sampaio, sorrindo, de blazer branco",
     },
     {
       name: "[Nome da Advogada]",
-      role: "Advogada · Direito Trabalhista",
+      role: "Advogada associada",
+      specialty: "Direito Trabalhista",
       education: "[Graduação: instituição fictícia]",
       registry: registryNumber,
-      photo: null as string | null,
+      photo: "/images/equipe-associada.webp",
+      alt: "Retrato da advogada associada, sorrindo, de óculos e blazer azul",
     },
     {
       name: "[Nome do Advogado]",
-      role: "Advogado · Direito do Consumidor",
+      role: "Advogado associado",
+      specialty: "Direito do Consumidor",
       education: "[Graduação: instituição fictícia]",
       registry: registryNumber,
-      photo: null as string | null,
+      photo: "/images/equipe-associado.webp",
+      alt: "Retrato do advogado associado, de terno escuro e gravata",
     },
   ],
 
@@ -628,7 +648,7 @@ export const site = {
       {
         heading: "Quem é o controlador dos dados",
         paragraphs: [
-          `O controlador (quem decide como os dados são usados) é [Razão Social do Escritório], inscrito no CNPJ sob o nº [00.000.000/0000-00 fictício], com sede em [Endereço fictício], ${city}/[UF].`,
+          `O controlador (quem decide como os dados são usados) é [Razão Social do Escritório], inscrito no CNPJ sob o nº [00.000.000/0000-00 fictício], com sede em [Endereço fictício], ${cityState}.`,
         ],
       },
       {
@@ -668,24 +688,13 @@ export const site = {
   },
 
   photoCredits: [
-    {
-      title: "Legal Contract & Signature - Warm Tones",
-      author: "Blogtrepreneur",
-      license: "CC BY 2.0",
-      href: "https://commons.wikimedia.org/wiki/File:Legal_Contract_%26_Signature_-_Warm_Tones.jpg",
-    },
-    {
-      title: "Wolf Law Library books",
-      author: "Jrcla2",
-      license: "domínio público",
-      href: "https://commons.wikimedia.org/wiki/File:Wolf_Law_Library_books.jpg",
-    },
-    {
-      title: "Osgoode Hall Law School Library",
-      author: "Raysonho",
-      license: "CC0",
-      href: "https://commons.wikimedia.org/wiki/File:OsgoodeHallLawSchoolLibrary2.jpg",
-    },
+    { title: "Escritório", author: "Caroline Badran", license: "Unsplash", href: "https://unsplash.com/photos/modern-office-interior-with-glass-walls-and-plants-B74lBYC3PXI" },
+    { title: "Retrato 1", author: "LinkedIn Sales Solutions", license: "Unsplash", href: "https://unsplash.com/photos/pAtA8xe_iVM" },
+    { title: "Retrato 2", author: "arthur henrique", license: "Unsplash", href: "https://unsplash.com/photos/SLd8M9knkGc" },
+    { title: "Retrato 3", author: "Vitaly Gariev", license: "Unsplash", href: "https://unsplash.com/photos/jI4HREHtae4" },
+    { title: "Retrato 4", author: "Jeppe Mønster", license: "Unsplash", href: "https://unsplash.com/photos/qIZNyuZe638" },
+    { title: "Wolf Law Library books", author: "Jrcla2", license: "domínio público, Wikimedia Commons", href: "https://commons.wikimedia.org/wiki/File:Wolf_Law_Library_books.jpg" },
+    { title: "Osgoode Hall Law School Library", author: "Raysonho", license: "CC0, Wikimedia Commons", href: "https://commons.wikimedia.org/wiki/File:OsgoodeHallLawSchoolLibrary2.jpg" },
   ],
 
   legalLine: `Site de demonstração. ${name} não existe. Substitua todos os dados antes de qualquer uso real.`,

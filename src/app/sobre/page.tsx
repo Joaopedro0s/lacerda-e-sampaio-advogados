@@ -1,6 +1,6 @@
 import Image from "next/image";
-import { User } from "lucide-react";
 import { Reveal } from "@/components/Reveal";
+import { TeamCard } from "@/components/TeamCard";
 import { CtaPanel, Heading, PageHero, Section } from "@/components/Section";
 import { site } from "@/content/site";
 import { pageMeta } from "@/lib/seo";
@@ -80,29 +80,7 @@ export default function SobrePage() {
           {site.team.map((member, i) => (
             <li key={member.name}>
               <Reveal delay={i * 80}>
-                {member.photo ? (
-                  <Image
-                    src={member.photo}
-                    width={800}
-                    height={1000}
-                    alt={`Retrato de ${member.name}`}
-                    sizes="(min-width: 1024px) 22vw, (min-width: 640px) 45vw, 90vw"
-                    className="aspect-[4/5] w-full rounded-sm object-cover"
-                  />
-                ) : (
-                  // Placeholder com a mesma proporção do retrato (ver docs/imagens-pendentes.md)
-                  <div
-                    role="img"
-                    aria-label={`Retrato de ${member.name} (foto a adicionar)`}
-                    className="flex aspect-[4/5] w-full items-end justify-center overflow-hidden rounded-sm bg-gradient-to-b from-brass-soft to-paper-deep"
-                  >
-                    <User className="size-3/4 translate-y-[12%] text-brass/55" strokeWidth={0.75} aria-hidden="true" />
-                  </div>
-                )}
-                <h3 className="mt-5 text-2xl font-medium">{member.name}</h3>
-                <p className="mt-1 font-semibold text-brass-ink">{member.role}</p>
-                <p className="mt-3 text-sm text-muted">{member.education}</p>
-                <p className="text-sm text-muted">{member.registry}</p>
+                <TeamCard member={member} showEducation />
               </Reveal>
             </li>
           ))}

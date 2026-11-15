@@ -128,9 +128,9 @@ export function ContactForm() {
             aria-invalid={errors.consent ? true : undefined}
             aria-describedby={errors.consent ? "contato-consent-erro" : undefined}
             onChange={(e) => set("consent", e.target.checked)}
-            className="mt-1 size-5 shrink-0 accent-[var(--ink)]"
+            className="size-6 shrink-0 cursor-pointer appearance-none rounded-sm border-2 border-field bg-white transition-colors duration-150 checked:border-ink checked:bg-ink checked:shadow-[inset_0_0_0_3px_white] aria-invalid:border-red-700"
           />
-          <label htmlFor="contato-consent" className="text-[0.95rem] text-muted">
+          <label htmlFor="contato-consent" className="cursor-pointer text-[0.95rem] text-muted">
             Autorizo o uso dos meus dados para retorno deste contato, conforme o{" "}
             <Link href="/privacidade" className="link">
               {site.privacy.title}

@@ -16,6 +16,7 @@ export default {
         muted: "var(--muted)",
         "on-dark": "var(--on-dark)",
         line: "var(--line)",
+        field: "var(--field)",
       },
       fontFamily: {
         serif: ["var(--font-serif)", "Georgia", "serif"],
