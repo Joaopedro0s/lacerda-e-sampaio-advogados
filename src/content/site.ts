@@ -379,10 +379,10 @@ export const site = {
   registryNumber,
 
   contact: {
-    phoneDisplay: "(00) 0000-0000",
-    phoneE164: "+550000000000",
-    whatsappDisplay: "(00) 90000-0000",
-    whatsappNumber: "5500900000000",
+    phoneDisplay: "(12) 99102-6455",
+    phoneE164: "+5512991026455",
+    whatsappDisplay: "(12) 99102-6455",
+    whatsappNumber: "5512991026455",
     whatsappMessage: "Olá! Gostaria de agendar uma consulta.",
     email: "contato@escritorio.example",
     addressLines: ["[Rua Fictícia, 000, sala 00]", `[Bairro] · ${cityState}`, "[CEP 00000-000]"],
