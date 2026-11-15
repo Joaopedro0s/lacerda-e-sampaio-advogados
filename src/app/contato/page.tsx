@@ -1,6 +1,7 @@
 import { Clock, Mail, MapPin, MessageCircle, Phone } from "lucide-react";
 import type { ReactNode } from "react";
 import { ContactForm } from "@/components/ContactForm";
+import { EmailText } from "@/components/EmailText";
 import { Reveal } from "@/components/Reveal";
 import { IconCircle, PageHero, Section } from "@/components/Section";
 import { SocialLinks } from "@/components/SocialLinks";
@@ -46,18 +47,18 @@ export default function ContatoPage() {
             <h2 className="sr-only">Canais de atendimento</h2>
             <ul className="divide-y divide-line border-y border-line">
               <Item icon={Phone} title="Telefone">
-                <a href={telUrl} className="link inline-flex min-h-11 items-center">
+                <a href={telUrl} className="link inline-flex min-h-11 items-center whitespace-nowrap">
                   {contact.phoneDisplay}
                 </a>
               </Item>
               <Item icon={MessageCircle} title="WhatsApp">
-                <a href={whatsappUrl} target="_blank" rel="noopener noreferrer" className="link inline-flex min-h-11 items-center">
+                <a href={whatsappUrl} target="_blank" rel="noopener noreferrer" className="link inline-flex min-h-11 items-center whitespace-nowrap">
                   {contact.whatsappDisplay}
                 </a>
               </Item>
               <Item icon={Mail} title="E-mail">
-                <a href={mailUrl} className="link inline-flex min-h-11 items-center break-all">
-                  {contact.email}
+                <a href={mailUrl} className="link inline-flex min-h-11 items-center">
+                  <EmailText email={contact.email} />
                 </a>
               </Item>
               <Item icon={MapPin} title="Endereço">

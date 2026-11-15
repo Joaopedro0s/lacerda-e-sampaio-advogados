@@ -118,6 +118,10 @@ Cada teste traz um comentário de uma linha dizendo o que cobre.
 
 As fotos vêm do Unsplash (hero e retratos da equipe) e do Wikimedia Commons (biblioteca e estantes), todas com licença de uso livre e crédito no rodapé. Os retratos são de banco de imagens: veja `docs/imagens-pendentes.md` para substituí-los.
 
+## Ícones
+
+O favicon é um monograma "L" desenhado em `src/app/icon.svg`. Os demais arquivos (`favicon.ico`, `apple-icon.png`, `public/icon-192.png` e `public/icon-512.png`) são gerados a partir dele com `node scripts/generate-icons.mjs`, que usa o `sharp` já instalado com o Next. Rode o script de novo sempre que editar o SVG.
+
 ## Pendências conhecidas
 
 - Retratos da equipe são fotos de banco, com nomes fictícios.

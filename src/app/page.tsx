@@ -62,19 +62,21 @@ export default function HomePage() {
           </div>
 
           <div className="relative mx-auto w-full max-w-md lg:max-w-none">
-            <div aria-hidden="true" className={`absolute -bottom-4 -right-4 left-8 top-8 border border-brass ${corners}`} />
-            <Image
-              src={hero.image.src}
-              width={hero.image.width}
-              height={hero.image.height}
-              alt={hero.image.alt}
-              priority
-              sizes="(min-width: 1024px) 40vw, 90vw"
-              className={`relative aspect-[4/3] w-full object-cover sm:aspect-[4/5] ${corners}`}
-            />
-            <div className="absolute -left-2 bottom-4 flex max-w-[13.5rem] items-center gap-2.5 rounded-sm border border-line bg-surface p-2.5 shadow-xl shadow-ink/15 sm:bottom-6 sm:max-w-[17.5rem] sm:gap-3 sm:p-4 lg:-left-12 lg:bottom-12">
+            <div className="relative">
+              <div aria-hidden="true" className={`absolute -bottom-4 -right-4 left-8 top-8 border border-brass ${corners}`} />
+              <Image
+                src={hero.image.src}
+                width={hero.image.width}
+                height={hero.image.height}
+                alt={hero.image.alt}
+                priority
+                sizes="(min-width: 1024px) 40vw, 90vw"
+                className={`relative aspect-[4/3] w-full object-cover sm:aspect-[4/5] ${corners}`}
+              />
+            </div>
+            <div className="mt-9 flex items-center gap-3 sm:absolute sm:-left-2 sm:bottom-6 sm:mt-0 sm:max-w-[17.5rem] sm:rounded-sm sm:border sm:border-line sm:bg-surface sm:p-4 sm:shadow-xl sm:shadow-ink/15 lg:-left-12 lg:bottom-12">
               <IconCircle icon={hero.card.icon} className="max-sm:!size-9" />
-              <p className="text-xs leading-snug sm:text-sm">
+              <p className="text-sm leading-snug">
                 <strong className="block font-semibold">{hero.card.title}</strong>
                 <span className="text-muted">{hero.card.text}</span>
               </p>

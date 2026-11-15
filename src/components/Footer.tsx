@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { Clock, Mail, MapPin, MessageCircle, Phone } from "lucide-react";
 import { mailUrl, site, telUrl, whatsappUrl } from "@/content/site";
+import { EmailText } from "./EmailText";
 import { IconCircle } from "./Section";
 import { SocialLinks } from "./SocialLinks";
 import { Wordmark } from "./Wordmark";
@@ -11,7 +12,7 @@ const columnTitle = "flex min-h-9 items-center gap-3 font-sans text-sm font-semi
 export function Footer() {
   return (
     <footer className="on-dark bg-ink pb-16 text-on-dark md:pb-0">
-      <div className="wrap grid gap-12 py-16 md:grid-cols-2 lg:grid-cols-[1.4fr_1fr_1fr_1fr]">
+      <div className="wrap grid gap-12 py-16 md:grid-cols-2 lg:grid-cols-[1.3fr_1.25fr_0.9fr_0.8fr]">
         <div>
           <div className="text-white">
             <Wordmark />
@@ -34,17 +35,17 @@ export function Footer() {
                 </span>
               ))}
             </p>
-            <a href={telUrl} className={`flex min-h-11 items-center gap-2 ${link}`}>
+            <a href={telUrl} className={`flex min-h-11 items-center gap-2 whitespace-nowrap ${link}`}>
               <Phone className="size-4 shrink-0 text-brass" aria-hidden="true" />
               {site.contact.phoneDisplay}
             </a>
-            <a href={whatsappUrl} target="_blank" rel="noopener noreferrer" className={`flex min-h-11 items-center gap-2 ${link}`}>
+            <a href={whatsappUrl} target="_blank" rel="noopener noreferrer" className={`flex min-h-11 items-center gap-2 whitespace-nowrap ${link}`}>
               <MessageCircle className="size-4 shrink-0 text-brass" aria-hidden="true" />
               WhatsApp {site.contact.whatsappDisplay}
             </a>
-            <a href={mailUrl} className={`flex min-h-11 items-center gap-2 break-all ${link}`}>
+            <a href={mailUrl} className={`flex min-h-11 items-center gap-2 ${link}`}>
               <Mail className="size-4 shrink-0 text-brass" aria-hidden="true" />
-              {site.contact.email}
+              <EmailText email={site.contact.email} />
             </a>
           </address>
         </div>

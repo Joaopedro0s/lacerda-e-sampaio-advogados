@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <!-- Monograma "L" serifado, desenhado em path (não depende de fonte). Latão sobre azul-tinta. -->
+  <rect x="1" y="1" width="62" height="62" rx="12" fill="#0F1B2D" stroke="#B08D57" stroke-width="2"/>
+  <path fill="#B08D57" d="M17 13h20v5h-5v27h8c3.5 0 5.5-2.5 6.5-9h3v17H17v-5h5V18h-5z"/>
+</svg>

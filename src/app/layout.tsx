@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Figtree, Fraunces } from "next/font/google";
 import type { ReactNode } from "react";
 import { JsonLd } from "@/components/JsonLd";
@@ -15,6 +15,8 @@ export const metadata: Metadata = {
   title: { default: site.home.metaTitle, template: `%s | ${site.name}` },
   description: site.description,
 };
+
+export const viewport: Viewport = { themeColor: "#0F1B2D" };
 
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
