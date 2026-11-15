@@ -1,0 +1,132 @@
+@import "tailwindcss";
+@config "../../tailwind.config.ts";
+
+:root {
+  --ink: #0f1b2d; /* principal: azul-noite */
+  --ink-soft: #1c2b42;
+  --paper: #f7f4ee; /* fundo claro quente */
+  --paper-deep: #ede7db;
+  --surface: #fffdf9;
+  --brass: #b08d57; /* destaque: decoração e texto sobre fundo escuro */
+  --brass-ink: #7a5f33; /* destaque para texto sobre fundo claro (AA) */
+  --brass-soft: #efe4d0;
+  --muted: #465366;
+  --on-dark: #c3cad6;
+  --line: #ddd5c6;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 6rem;
+  }
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--font-sans), system-ui, sans-serif;
+    font-size: 17px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+  h1,
+  h2,
+  h3 {
+    font-family: var(--font-serif), Georgia, serif;
+    line-height: 1.12;
+    letter-spacing: -0.015em;
+    text-wrap: balance;
+  }
+  p {
+    text-wrap: pretty;
+  }
+  :focus-visible {
+    outline: 2px solid var(--brass-ink);
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+  .on-dark :focus-visible {
+    outline-color: var(--brass);
+  }
+}
+
+@layer components {
+  .wrap {
+    @apply mx-auto w-full max-w-container px-5 md:px-8;
+  }
+  .btn {
+    @apply inline-flex min-h-12 items-center justify-center gap-2 rounded-sm px-6 py-3 text-base font-semibold transition duration-200 hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-70;
+  }
+  .btn-primary {
+    @apply bg-ink text-paper hover:bg-ink-soft;
+  }
+  .btn-brass {
+    @apply bg-brass text-ink hover:brightness-110;
+  }
+  .btn-outline {
+    @apply border border-ink/30 text-ink hover:border-ink hover:bg-ink/5;
+  }
+  .btn-outline-light {
+    @apply border border-white/35 text-white hover:border-white hover:bg-white/10;
+  }
+  /* link com sublinhado que "desenha" no hover */
+  .link {
+    @apply font-semibold text-brass-ink underline decoration-brass/50 decoration-1 underline-offset-4 transition-colors duration-200 hover:text-ink hover:decoration-ink;
+  }
+  .eyebrow {
+    @apply flex items-center gap-3 text-sm font-semibold uppercase tracking-[0.14em] text-brass-ink before:h-px before:w-8 before:bg-brass;
+  }
+  .on-dark .eyebrow {
+    @apply text-brass;
+  }
+  .lead {
+    @apply text-lg text-muted;
+  }
+  .on-dark .lead {
+    @apply text-on-dark;
+  }
+  .icon-circle {
+    @apply flex size-12 shrink-0 items-center justify-center rounded-full bg-brass-soft text-brass-ink;
+  }
+  .on-dark .icon-circle {
+    @apply bg-brass/15 text-brass;
+  }
+  .field {
+    @apply block min-h-12 w-full rounded-sm border border-ink/30 bg-white px-4 py-3 text-ink transition-colors duration-150 placeholder:text-muted/70 focus:border-ink aria-invalid:border-red-700;
+  }
+}
+
+/* Entrada suave ao rolar (ver components/Reveal.tsx) */
+.reveal {
+  opacity: 0;
+  transform: translateY(14px);
+  transition:
+    opacity 600ms ease-out,
+    transform 600ms ease-out;
+}
+.reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+@keyframes menu-in {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+  .reveal {
+    opacity: 1;
+    transform: none;
+  }
+}
